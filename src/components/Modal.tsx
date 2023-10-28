@@ -5,10 +5,9 @@ import Login from "./Login";
 export default function Modal() {
   return (
     <div>
-        <label htmlFor="my_modal_1" className="btn">
-        open modal
+        <label htmlFor="my_modal_1" className="text-blue-500 hover:cursor-pointer">
+        Request Now!
         </label>
-
         <input type="checkbox" id="my_modal_1" className="modal-toggle" />
         <div className="modal">
             <div className="modal-box px-7 py-5 w-96 rounded-md">

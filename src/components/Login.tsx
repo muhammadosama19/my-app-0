@@ -5,7 +5,7 @@ export default function Login() {
     <div>
       <div className="flex justify-center items-center">
         <form action="#" method="post">
-        <input
+          <input
             type="text"
             name="text"
             id="text"

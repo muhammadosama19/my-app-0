@@ -3,6 +3,7 @@ import Link from "next/link";
 import Aqssa from "@/image/Aqssa.jpg";
 import FreePalestine from "@/image/FreePalestine.jpg";
 import user from "@/image/user.png";
+import ico from "@/image/favicon png.png";
 export const Element_Left = () => {
   return (
     <div className="navbar-start z-50">
@@ -42,7 +43,6 @@ export const Element_Left = () => {
               >
                 <Link href={"/afas/1564"} className="text-left">
                   <h1 className="w-full flex justify-start items-center p-3 m-1 hover:bg-base-300 text-base rounded-lg">
-                    {" "}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-7 w-7 "
@@ -68,7 +68,6 @@ export const Element_Left = () => {
               >
                 <Link href={"/afas/1564"} className="text-left">
                   <h1 className="w-full flex justify-start items-center p-3 m-1 hover:bg-base-300 text-base rounded-lg">
-                    {" "}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-7 w-7 "
@@ -95,6 +94,12 @@ export const Element_Left = () => {
         href={"/"}
         className="btn btn-ghost normal-case text-xl text-[#00B569]"
       >
+    <Image
+      src={ico}
+      alt="Ico Rsala.com"
+      className="w-[35px] h-[35px]"
+    />
+          
         Rsala
       </Link>
     </div>
@@ -172,7 +177,7 @@ export const Element_Right = () => {
         <div className="dropdown dropdown-end">
           <label
             tabIndex={0}
-            className="btn bg-white rounded-full px-2 pr-3 mx-5 border-none max-lg:-z-0"
+            className="btn bg-white rounded-full px-2 pr-3 max-lg:p-0 max-lg:mx-1 mx-5 border-none "
           >
             <Image
               src={Aqssa}
@@ -185,29 +190,34 @@ export const Element_Right = () => {
             </div>
           </label>
           <ul
-            tabIndex={0}
-            className="dropdown-content z-[1] menu  shadow bg-base-100 rounded-md w-80"
+            tabIndex={1}
+            className="dropdown-content z-0 menu  shadow bg-base-100 rounded-md w-80"
           >
             <Image
               src={FreePalestine}
               alt="background profile"
               className="w-full h-24 object-cover rounded-md"
             />
-            <div className="relative bottom-8 left-3 ">
+            <div className="relative bottom-7 left-3 ">
               <Image
                 src={Aqssa}
                 alt="avatar profile"
                 className="w-16 h-16 object-cover rounded-full border-2 border-solid"
               />
-              {/* <h1>mu7ammad</h1> */}
-              {/* <h1>@mu7ammad</h1> */}
+              <button className="px-5 py-1 border-[1px] rounded-lg border-base-300 bg-white hover:bg-base-300 relative bottom-7 left-[75px]">Copy Link</button>
+              <div className="relative bottom-6 text-left">
+                <h1 className="text-xl font-medium" >MU7AMMAD</h1>
+                <h1 className="text-xs text-gray-500">@mu7ammad</h1>
+              </div>
             </div>
-            <div>
-              <button className="btn w-full mt-2">ملف الشخصي</button>
-              <button className="btn w-full mt-2">اعدادات</button>
-              <button className="btn w-full mt-2 bg-rose-500 text-white hover:bg-rose-600">
-                تسجيل خروج
-              </button>
+            <div className="relative bottom-8">
+              <Link href={'/profile'}><button className="btn w-full mt-2">ملف الشخصي</button></Link>
+              <Link href={'/setting'}><button className="btn w-full mt-2">اعدادات</button></Link>
+              <Link href={'/setting'}><button className="btn w-full mt-2">اعدادات</button></Link>
+              <div className="relative top-8">
+                <hr />
+                <Link href={'/'}><button className="btn w-full mt-2 bg-rose-500 text-white hover:bg-rose-600">تسجيل خروج</button></Link>
+              </div>
             </div>
           </ul>
         </div>
@@ -216,13 +226,27 @@ export const Element_Right = () => {
   );
 };
 
+
+export function Element_3() {
+  return (
+    <div className="navbar-end">
+        <label htmlFor="my_modal_1" className="btn mr-3 bg-base-100">
+        انشاء حساب
+        </label>
+        <button className="btn">تسجيل دخول</button>
+    </div>
+  )
+}
+
+
 export default function Navigation() {
   return (
     <nav>
-      <div className="navbar bg-white h-12">
+      <div className="navbar bg-white h-10">
         <Element_Left />
         <Element_Center />
-        <Element_Right />
+        {/* <Element_Right /> */}
+        <Element_3 />
       </div>
     </nav>
   );
