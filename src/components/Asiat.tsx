@@ -1,6 +1,4 @@
-import Login from "./Login";
 import Signin from "./Sigin";
-import FreePalestine from '@/image/FreePalestine.jpg'
 
 export default function Asiat() {
   return (

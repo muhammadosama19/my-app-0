@@ -227,7 +227,7 @@ export const Element_Right = () => {
 };
 
 
-export function Element_3() {
+export function ElementRightCreate() {
   return (
     <div className="navbar-end">
         <label htmlFor="my_modal_1" className="btn mr-3 bg-base-100">
@@ -246,7 +246,7 @@ export default function Navigation() {
         <Element_Left />
         <Element_Center />
         {/* <Element_Right /> */}
-        <Element_3 />
+        <ElementRightCreate />
       </div>
     </nav>
   );
