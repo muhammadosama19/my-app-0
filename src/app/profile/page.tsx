@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import Aqssa from "@/image/Aqssa.jpg";
-import FreePalestine from "@/image/FreePalestine.jpg";
 
-export function Element_1() {
+function Element1() {
   return (
     <div className="">
       <div className="flex justify-center items-center">
@@ -21,7 +20,7 @@ export function Element_1() {
   );
 }
 
-export function Element_2() {
+function Element2() {
   return (
     <div className="flex justify-center items-center mt-3 mx-7 ">
       <div className="w-[500px]">
@@ -59,11 +58,11 @@ export function Element_2() {
 export default function Profile() {
   return (
     <div className="">
-      <Element_1 />
-      <Element_2 />
-      <Element_2 />
-      <Element_2 />
-      <Element_2 />
+      <Element1 />
+      <Element2 />
+      <Element2 />
+      <Element2 />
+      <Element2 />
     </div>
   );
 }
