@@ -1,9 +1,12 @@
+"use client"
 import Image from "next/image";
 import Link from "next/link";
-import Aqssa from "@/image/Aqssa.jpg";
-import FreePalestine from "@/image/FreePalestine.jpg";
-import user from "@/image/user.png";
-import ico from "@/image/favicon png.png";
+import Aqssa from "@/assets/image/Aqssa.jpg";
+import FreePalestine from "@/assets/image/FreePalestine.jpg";
+import ico from "@/assets/image/favicon png.png";
+import SigninButton from "./SigninButton";
+import { signIn, signOut, useSession } from "next-auth/react";
+
 export const Element_Left = () => {
   return (
     <div className="navbar-start z-50">
@@ -107,6 +110,8 @@ export const Element_Left = () => {
 };
 export const Element_Center = () => {
   return (
+  <div className="">
+
     <div className="navbar-center hidden sm:flex">
       <ul className="menu sm:menu-horizontal rounded-box">
         <li>
@@ -123,7 +128,7 @@ export const Element_Center = () => {
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-              />
+                />
             </svg>
             Home
           </Link>
@@ -136,13 +141,13 @@ export const Element_Center = () => {
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-            >
+              >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
+                />
             </svg>
             Profile
           </Link>
@@ -155,23 +160,27 @@ export const Element_Center = () => {
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-            >
+              >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
+                />
             </svg>
             Updates
           </Link>
         </li>
       </ul>
     </div>
+  </div>
   );
 };
 export const Element_Right = () => {
-  return (
+  const { data: session } = useSession();
+  console.log(session?.user);
+
+  if (session && session.user) return (
     <div className="navbar-end">
       <div className="tooltip tooltip-bottom" data-tip="View Profile">
         <div className="dropdown dropdown-end">
@@ -185,8 +194,9 @@ export const Element_Right = () => {
               className="w-[40px] h-[40px] rounded-full object-cover object-center"
             />
             <div className="grid max-lg:hidden ">
-              <h3 className="mb-1">mu7hammad osama</h3>
-              <h6 className="text-[0.7rem] text-left">@mu7ammad</h6>
+              
+              <h3 className="mb-1">{session.user.name}</h3>
+              <h6 className="text-[0.7rem] text-left">@{session.user.username}</h6>
             </div>
           </label>
           <ul
@@ -206,8 +216,8 @@ export const Element_Right = () => {
               />
               <button className="px-5 py-1 border-[1px] rounded-lg border-base-300 bg-white hover:bg-base-300 relative bottom-7 left-[75px]">Copy Link</button>
               <div className="relative bottom-6 text-left">
-                <h1 className="text-xl font-medium" >MU7AMMAD</h1>
-                <h1 className="text-xs text-gray-500">@mu7ammad</h1>
+                <h1 className="text-xl font-medium" >{session.user.name}</h1>
+                <h1 className="text-xs text-gray-500">@{session.user.username}</h1>
               </div>
             </div>
             <div className="relative bottom-8">
@@ -216,7 +226,7 @@ export const Element_Right = () => {
               <Link href={'/setting'}><button className="btn w-full mt-2">اعدادات</button></Link>
               <div className="relative top-8">
                 <hr />
-                <Link href={'/'}><button className="btn w-full mt-2 bg-rose-500 text-white hover:bg-rose-600">تسجيل خروج</button></Link>
+                <Link href={'/'}><button onClick={() => signOut()} className="btn w-full mt-2 bg-rose-500 text-white hover:bg-rose-600">تسجيل خروج</button></Link>
               </div>
             </div>
           </ul>
@@ -224,29 +234,30 @@ export const Element_Right = () => {
       </div>
     </div>
   );
+  return (
+    <>
+      <div className="navbar-end">
+        <label htmlFor="my_modal_1" className="btn mr-3 bg-base-100">
+          انشاء حساب
+        </label>
+        <Link href={'/signin'}>
+          <button className="btn" >تسجيل دخول</button>
+        </Link>
+      </div>
+    </>
+  );
+
 };
 
-
-export function ElementRightCreate() {
-  return (
-    <div className="navbar-end">
-        <label htmlFor="my_modal_1" className="btn mr-3 bg-base-100">
-        انشاء حساب
-        </label>
-        <button className="btn">تسجيل دخول</button>
-    </div>
-  )
-}
 
 
 export default function Navigation() {
   return (
-    <nav>
+    <nav className="flex justify-center items-center">
       <div className="navbar bg-white h-10">
         <Element_Left />
         <Element_Center />
-        {/* <Element_Right /> */}
-        <ElementRightCreate />
+        <Element_Right />
       </div>
     </nav>
   );

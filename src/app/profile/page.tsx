@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import Aqssa from "@/image/Aqssa.jpg";
+import Aqssa from "@/assets/image/Aqssa.jpg";
 
 export default function Profile() {
   return (

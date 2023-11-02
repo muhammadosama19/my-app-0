@@ -1,33 +1,37 @@
 "use client";
-import SigninButton from "@/components/SigninButton";
-import Sigin_page from "./signin/page";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 
-export default function Home() {
+const SigninButton = () => {
   const { data: session } = useSession();
   console.log(session?.user);
 
-  // في حالة تسجيل دخول اعرض هذا
   if (session && session.user) {
     return (
-      <main>
-        <Sigin_page />
-      </main>
+      <div className="flex gap-4 ml-auto">
+        <p className="text-sky-600">
+          {session.user.name}
+          {session.user.username}
+        </p>
+        <button onClick={() => signOut()} className="text-red-600">
+          Sign Out
+        </button>
+      </div>
     );
   }
-  // في حالة لم يتم تسجيل اعرض هذا
   return (
     <>
       <div className="navbar-end">
         <label htmlFor="my_modal_1" className="btn mr-3 bg-base-100">
           انشاء حساب
         </label>
-        <Link href={"/signin"}>
-          <button className="btn">تسجيل دخول</button>
+        <Link href={'/signin'}>
+          <button className="btn" >تسجيل دخول</button>
         </Link>
       </div>
     </>
   );
-}
+};
+
+export default SigninButton;

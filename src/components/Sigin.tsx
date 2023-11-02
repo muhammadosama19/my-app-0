@@ -1,15 +1,29 @@
 import Link from "next/link";
 import Model from "./Modal";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Sigin() {
   return (
     <div>
       <div className="flex justify-center items-center">
-        <form action="#" method="post">
+        <form action="api/user" method="post">
+          <input
+            type="text"
+            name="name"
+            placeholder="enter name"
+            className="border-2 border-collapse border-spacing-5 border-slate-100 placeholder:text-gray-500 focus-within:outline-1 focus-within:outline-gray-300 font-normal rounded-md p-3 m-1 w-80"
+          />
+          <br />
+          <input
+            type="text"
+            name="username"
+            placeholder="enter Username"
+            className="border-2 border-collapse border-spacing-5 border-slate-100 placeholder:text-gray-500 focus-within:outline-1 focus-within:outline-gray-300 font-normal rounded-md p-3 m-1 w-80"
+          />
+          <br />
           <input
             type="email"
             name="email"
-            id="emil"
             placeholder="enter E-mail"
             className="border-2 border-collapse border-spacing-5 border-slate-100 placeholder:text-gray-500 focus-within:outline-1 focus-within:outline-gray-300 font-normal rounded-md p-3 m-1 w-80"
           />
@@ -17,7 +31,6 @@ export default function Sigin() {
           <input
             type="password"
             name="password"
-            id="password"
             placeholder="enter Password"
             className="border-2 border-collapse border-spacing-5 border-slate-100 placeholder:text-gray-500 focus-within:outline-1 focus-within:outline-gray-300 font-normal rounded-md p-3 m-1 w-80"
           />
@@ -31,10 +44,14 @@ export default function Sigin() {
         </form>
       </div>
       <div>
-          <p className="text-center mt-3 max-md:mt-7">تسجيل بواسطة</p>
+        <p className="text-center mt-3 max-md:mt-7">تسجيل بواسطة</p>
         <div className="flex justify-center items-center mt-3 max-md:block max-md:mt-7">
-          <button className="btn mr-2 bg-base-200 border-[1px] w-40 max-md:w-full max-md:m-1">Google</button>
-          <button className="btn ml-2 bg-base-200 border-[1px] w-40 max-md:w-full max-md:m-1">Facebook</button>
+          <button className="btn mr-2 bg-base-200 border-[1px] w-40 max-md:w-full max-md:m-1">
+            Google
+          </button>
+          <button onClick={() => signIn()} className="btn ml-2 bg-base-200 border-[1px] w-40 max-md:w-full max-md:m-1">
+            Facebook
+          </button>
         </div>
       </div>
       <div className="flex my-4 ">
