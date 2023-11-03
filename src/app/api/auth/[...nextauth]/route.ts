@@ -7,6 +7,14 @@ const handler = NextAuth({
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code"
+        }
+      }
+
     }),
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
@@ -48,12 +56,13 @@ const handler = NextAuth({
   ],
 
   pages: {
-    // signIn: "/signIn",
+    signIn: "/signIn",
     newUser: "/newUser",
     signOut: "/signOut",
     error: "/error"
   },
   callbacks: {
+    
     async jwt({ token, user }) {
       return { ...token, ...user };
     },
