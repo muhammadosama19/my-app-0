@@ -28,6 +28,7 @@ export default function Home() {
           <button className="btn">تسجيل دخول</button>
         </Link>
       </div>
+      <SigninButton />
     </>
   );
 }

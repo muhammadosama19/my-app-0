@@ -26,9 +26,9 @@ const SigninButton = () => {
         <label htmlFor="my_modal_1" className="btn mr-3 bg-base-100">
           انشاء حساب
         </label>
-        <Link href={'/signin'}>
-          <button className="btn" >تسجيل دخول</button>
-        </Link>
+        <>
+          <button onClick={() => signIn()} className="btn" >تسجيل دخول</button>
+        </>
       </div>
     </>
   );
