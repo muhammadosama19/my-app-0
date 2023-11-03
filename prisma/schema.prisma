@@ -1,31 +1,44 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
+// mongodb+srv://rsala:rsala@rsala.d0fcwjc.mongodb.net/rs
+
+
+
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
 
 generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
-}
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  email     String   @unique
+  password  String
   username  String?  @unique
-  name  String?
-  avatar  String?
-  wallpaper  String?
-  bio  String?
-  password String
-  posts Post[]
+  avatar    String? @default("https://lh3.googleusercontent.com/pw/ADCreHevB3ZUo8sLX3dypiudmWUR7JCjIvMFxIHD-cox6XVqKG8dfmBkvW6BffxhmiN1aqrXHLP4jQCGkRUMj2UL5A0yqz6IVkIB166OfUyeCGCx3IzT60psfBoONpkOxbuSVzNbHKFuPED9Uh3ylqqQrhwLo-_QJdmp13urphP3_wa8VAsRklDF-8gIVxCcvmzqaF1W_6fb5OyOKBHt3BeO7Opo4D8_BFN1Gq7q-boPLsCIvHh0QWcCglfMgBRwrupbkDopgg8L1R-hzIOvrO93D0IFNnS4t0BUOmgsEhOwmjz3u5fk7GwsP4TQyEiw7Q-B6fqEpqJkS0S_xTnPDNI9V_Ajo-iMOZueiKyw_2Zx5MwhQ2imD3jmas8byJQzuoVVTZ2F13bs4SahqsJ2W1194zFpNsxpSNEWiaKBB9B_zYoU3mZ8ZNcHiiuUzvuaoIdkCLmOi3qQVTnwCapdrHI1UbcoslVCKEIVy3kY3PD0z73frAjk7o4RZo4OAzdkO8HXh8ogjpgT8HVu-rSy1dPwYZLesgj2eqETuZ1mxTjTPyVpXq0LNSExNOLwlZEUv_augmAHXVY7ioVQ_fnGxsjRUcxzVXZLphV52jStI_NprGDY3pjjnnWLeSwenilpwm9ffdLjMYsKahuZUaI4IcNaeYqc9ejm-rls11HU2axL09Y7L0S0DMH1-iIQH97Cy4yWaCPxph8LbhNVTjeowpDphDaKhE1JgJO95v0rQb4x4MdRbor8h-qpK2cTC7P7t4o-6lE6ztfhblbG2uJTzLjomV3uMn-ihm9ELiByCA9HKhNUjAHNKSqDREo0NWVxtq8eups8KGaDglCyejuY4v7S1oNA8XD9K7siBNAypslWjFIDGdLP0Y6wbTyCpXuIj-PEu-JmLe4m15TMVD0R62Eh6lo=w512-h512-s-no-gm?authuser=0")
+  wallpaper String? @default("https://lh3.googleusercontent.com/pw/ADCreHdKRXE2Ew3e4mubwLoxBoYjUDVLcnvfk39Jlkfs-IfMGzUEPn53NB3X19kI1s1usO-hbUgDdJxQycungjMB9sMmUENDsIK96Ed-uSyMgalr1NXPxF4CyCwbSYSHhfZbl2iNYikadc7TIAYU0bFuOLlqSS50rdzyBaHlNlInCIPXkva2D6oihbAHYBvO36N5o5Uh56EnGhdUdCBSmKLVTHlAX6VOO5VlCyUO2Kd-RO7qqwR7Y9Zw-feE_9Hz1-BeETtUpPCe_WO2Im7UPe9OPw3DC17GueGDvHycIafV7EzOPi4r126oAN3RFclWG6SRegGk_SFy_MvqDhOUTv2XSe_DLqhD-8LyS4PVLU2yaG9pQ2GJAFwzrDoNZBgGms4zYY7PSt3j_JFvd4FUts96laDDS6uIjbmMVcpVn4qrnpMtfH2pE-bQloU25LMwuGlx0ZwdOZbbD4iU8rl6XszYbSWqclkrFCGSZfrw5ezBv7EW0zwVLmqeXIRqXxWkhzu23TxFiDq9bQW38xq-eEvYXRF8spEoS_9MYAbOXOwq04Z0OxXnVJCCSMy5eTJCmxrBnFBV-DSSvK4GB3DlAodArcnkXK9C6SDN2wMgx6Ef8Ajzd7zLLt4eX5qz9AHJwc8Y3F0gb4mtMgfDuXICY_8eEsKPdZIJWcgYiok8LkLgLBhdIexZpFyALGuIDCynSy2AkAchdV0ht09CaPY5YMumTa3_EBRdMandUGzMQw-sS0twuGDmzcMGa-ouZz1gORshwaxRHxJbEMWuJbSMidYxS4IO11jvbAslwP809Q8A20su6IzG0rvDqA02J9qSq_A4LD-2mMZ6lBxN3bFFfOBSlH7cP4RWtfeX1ruHI-VQVMd0ryHCIt0itJ1MFronQkfIFfhaIRfxV-HaPwxC7nD6ffA=w926-h617-s-no-gm?authuser=0")
+  bio       String?
+  name      String
+  role      Role     @default(USER)
+  posts     Post[]
 }
 
 model Post {
-  id        Int     @id @default(autoincrement())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  published Boolean  @default(false)
   title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  String   @db.ObjectId
+}
+
+enum Role {
+  USER
+  ADMIN
 }
