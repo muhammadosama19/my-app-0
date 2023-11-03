@@ -1,19 +1,41 @@
 {
     "version": 2,
-    "builds": [
+    "routes": [
       {
-        "src": "/src/app/api/user/[id]/route.ts",
-        "use": "@vercel/node",
-        "config": {
-          "functions": {
-            "src/app/api/user/[id]": {
-              "prerun": {
-                "command": "npx prisma generate"
-              }
-            }
-          }
-        }
+        "src": "/",
+        "dest": "/"
+      },
+      {
+        "src": "/[profilePage]",
+        "dest": "/"
+      },
+      {
+        "src": "/contact",
+        "dest": "/"
+      },
+      {
+        "src": "/privacy",
+        "dest": "/"
+      },
+      {
+        "src": "/profile",
+        "dest": "/"
+      },
+      {
+        "src": "/signin",
+        "dest": "/"
+      },
+      {
+        "src": "/user",
+        "dest": "/"
+      },
+      {
+        "src": "/UserPost",
+        "dest": "/"
+      },
+      {
+        "src": "/welcome",
+        "dest": "/"
       }
     ]
   }
-  
