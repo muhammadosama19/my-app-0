@@ -14,7 +14,7 @@ export async function GET(request: Request, { params }: { params: { id: number }
     );
   }
   const userPosts = await prisma.post.findMany({
-    where: { authorId: String(params.id) },
+    where: { authorId: params.id.toString() },
     include: {
       author: {
         select: {
