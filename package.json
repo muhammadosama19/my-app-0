@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/supabase-adapter": "^0.1.6",
     "@prisma/client": "^5.5.2",
+    "@supabase/supabase-js": "^2.38.4",
     "@vercel/analytics": "^1.1.1",
     "bcrypt": "^5.1.1",
     "jsonwebtoken": "^9.0.2",

@@ -1,6 +1,9 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import FacebookProvider from "next-auth/providers/facebook";
+import { SupabaseAdapter } from "@auth/supabase-adapter"
+import { Adapter } from "next-auth/adapters";
 
 const handler = NextAuth({
   providers: [
@@ -13,8 +16,14 @@ const handler = NextAuth({
           access_type: "offline",
           response_type: "code"
         }
+        
       }
-
+      
+    }),
+    
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_CLIENT_ID!,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
     }),
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
@@ -29,7 +38,7 @@ const handler = NextAuth({
       },
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
-        const res = await fetch("http://localhost:3000/api/login", {
+        const res = await fetch("https://my-app-0.vercel.app/api/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -54,15 +63,35 @@ const handler = NextAuth({
       },
     }),
   ],
+  // adapter: SupabaseAdapter({
+  //   url: process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  //   secret: process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  // }) as Adapter,
 
   pages: {
     signIn: "/signIn",
+<<<<<<< Updated upstream
     newUser: "/newUser",
+=======
+    newUser: "/new",
+>>>>>>> Stashed changes
     signOut: "/signOut",
     error: "/error"
   },
   callbacks: {
     
+    async signIn({ user, account, profile, email, credentials }) {
+      const isAllowedToSignIn = true
+      if (isAllowedToSignIn) {
+        return true
+      } else {
+        // Return false to display a default error message
+        return false
+        // Or you can return a URL to redirect to:
+        // return '/unauthorized'
+      }
+    },
+  
     async jwt({ token, user }) {
       return { ...token, ...user };
     },
