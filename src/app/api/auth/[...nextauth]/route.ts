@@ -70,11 +70,7 @@ const handler = NextAuth({
 
   pages: {
     signIn: "/signIn",
-<<<<<<< Updated upstream
     newUser: "/newUser",
-=======
-    newUser: "/new",
->>>>>>> Stashed changes
     signOut: "/signOut",
     error: "/error"
   },
