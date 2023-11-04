@@ -5,7 +5,8 @@ import FreePalestine from "@/assets/image/FreePalestine.jpg";
 import { useSession } from "next-auth/react";
 
 
-export function Element2() {
+
+function Rsala() {
   const { data: session } = useSession();
 
   return (
@@ -75,9 +76,9 @@ export default function User() {
             </div>
             <h1 className="mt-5 text-2xl font-medium">Massages</h1>
             <div className="mt-7">
-            <Element2 />
-            <Element2 />
-            <Element2 />
+            <Rsala />
+            <Rsala />
+            <Rsala />
             </div>
           </div>
           <div className="elll w-80 border rounded-md p-2 text-base text-[#333333] flex justify-start">
