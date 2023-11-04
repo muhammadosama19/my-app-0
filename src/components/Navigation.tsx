@@ -4,7 +4,6 @@ import Link from "next/link";
 import Aqssa from "@/assets/image/Aqssa.jpg";
 import FreePalestine from "@/assets/image/FreePalestine.jpg";
 import ico from "@/assets/image/favicon png.png";
-import SigninButton from "./SigninButton";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 export const Element_Left = () => {
@@ -178,7 +177,6 @@ export const Element_Center = () => {
 };
 export const Element_Right = () => {
   const { data: session } = useSession();
-  console.log(session?.user);
 
   if (session && session.user) return (
     <div className="navbar-end">

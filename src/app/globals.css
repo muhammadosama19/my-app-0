@@ -1,3 +1,5 @@
+@import url('https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -30,4 +32,17 @@ body {
   color: #3DDAB4;
   color: #F5BC00;
   color: #00B569;
+}
+
+.sectionall {
+  display: grid;
+  grid-template-columns: auto 55px;
+}
+.imgflow {
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+.elll {
+  direction: rtl;
 }
